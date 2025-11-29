@@ -31,22 +31,74 @@ Projenin **ikili dosyasını** çalıştırmak için aşağıdaki emülatör vey
 
 ### Adım 1: Assembler Kurulumu
 
-Öncelikle Linux sisteminize yukarıda belirtilen assembler'lardan (örneğin fasm veya nasm) birini kurun.
+Derleme ve çalıştırma işlemi için Fasm (Flat Assembler) veya Nasm (Netwide Assembler) kullanmanız önerilir.
+Kurmak için:
+
+### Debian (nasm)
+```bash
+sudo apt install nasm
+```
+### Debian (fasm)
+```bash
+sudo apt install fasm
+```
+
+### Arch Linux (nasm)
+```bash
+sudo pacman -S nasm
+```
+### Arch Linux (fasm)
+```bash
+sudo pacman -S fasm
+```
+
+### Diğer dağıtımlar:
+
+[Nasm](https://pkgs.org/search/?q=nasm)
+[Fasm](https://pkgs.org/search/?q=fasm)
 
 ### Adım 2: Projeyi Derleme ve Çalıştırma
+Projeyi klonlayalım dizin ve içine girelim:
 
-öncelikle nasm veya fasm kurmalısınız nasm için debian sistemlerde sudo apt install nasm 
-fasm içinde sudo apt install fasm yazmanız yeter öncelikle BeriliumOs klasörüne cd ile giriyoruz sonra fasm_syntax sa isteyen nasm_syntax a da girebilir
-fasm syntax i derlemek için 
+```bash
+git clone https://github.com/developer-kenan/BeriliumOs.git
+cd BeriliumOs
+```
+
+Fasm syntax ile derlemek için:
+
+```bash
+cd fasm_syntax
 fasm beril.asm beril.bin
-sonra dd if=beril of=beril.img yazıp imaj dosyasını alabilirsiniz
-nasm için de
-cd nasm_syntax yapıp sonra
+dd if=beril of=beril.img
+```
+
+Nasm syntax ile derlemek için:
+
+```bash
+cd nasm_syntax
 nasm -f bin beril.asm -o beril
-dd if=beril of=beril.img yaparak imaj dosyasını alabilirsiniz
-## Reverse Engineering
-ndisasm beril yaparak (nasm için)
-fasm içinde xxd veya hexdump kullanabilirsiniz
+dd if=beril of=beril.img
+```
+
+## Tersine mühendislik
+### (Proje zaten açık kaynak kodlu ama siz bilirsiniz)
+
+### Nasm:
+
+```bash
+ndisasm beril
+```
+
+### Fasm:
+
+```bash
 xxd beril.bin
-veya
-hexdump -C beril.bin yapabilirsiniz.
+```
+
+Veya:
+
+```bash
+hexdump -C beril.bin
+```
+
